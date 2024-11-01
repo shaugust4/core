@@ -17,11 +17,10 @@ public class ComponentFilterAppConfigTest {
 
     @Test
     void filterScan() {
-        ApplicationContext ac = new AnnotationConfigApplicationContext(ComponentFilterAppConfigTest.class);
+        ApplicationContext ac = new AnnotationConfigApplicationContext(ComponentFilterAppConfig.class);
         BeanA beanA = ac.getBean("beanA", BeanA.class);
         assertThat(beanA).isNotNull();
 
-        ac.getBean("beanB", BeanB.class);
         assertThrows(
                 NoSuchBeanDefinitionException.class,
                 () -> ac.getBean("beanB", BeanB.class)
@@ -29,9 +28,10 @@ public class ComponentFilterAppConfigTest {
     }
 
     @Configuration
-    @ComponentScan(includeFilters = @Filter(classes = MyIncludeComponent.class),
+    @ComponentScan(
+            includeFilters = @Filter(classes = MyIncludeComponent.class),
             excludeFilters = @Filter(classes = MyExcludeComponent.class))
-            static class ComponentFilterAppConfig{
+    static class ComponentFilterAppConfig{
 
     }
 }

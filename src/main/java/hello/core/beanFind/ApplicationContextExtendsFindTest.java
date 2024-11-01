@@ -7,9 +7,11 @@ import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.springframework.beans.factory.NoUniqueBeanDefinitionException;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 import java.util.Map;
 
@@ -61,10 +63,10 @@ public class ApplicationContextExtendsFindTest {
 
     @Configuration
     static class TestConfig {
-        @Bean
+        /*@Bean
         public DiscountPolicy rateDiscountPolicy() {
             return new RateDiscountPolicy();
-        }
+        }*/
 
         @Bean
         public DiscountPolicy fixDiscountPolicy() {
