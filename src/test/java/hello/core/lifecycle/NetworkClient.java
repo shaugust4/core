@@ -2,16 +2,14 @@ package hello.core.lifecycle;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
+import lombok.Setter;
 
+@Setter
 public class NetworkClient {
     private String url;
 
     public NetworkClient() {
         System.out.println("생성자 호출, url = " + url);
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
     }
 
     // 서비스 시작
