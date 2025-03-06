@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.Map;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ApplicationContextSameBeanFindTest {

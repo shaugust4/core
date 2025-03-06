@@ -3,8 +3,8 @@ package hello.core.beanFind;
 import hello.core.discount.DiscountPolicy;
 import hello.core.discount.FixDiscountPolicy;
 import hello.core.discount.RateDiscountPolicy;
+import org.assertj.core.api.Assertions;
 import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.springframework.beans.factory.NoUniqueBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Primary;
 
 import java.util.Map;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ApplicationContextExtendsFindTest {
@@ -32,21 +32,22 @@ public class ApplicationContextExtendsFindTest {
     @DisplayName("부모 타입으로 조회 시, 자식이 둘 이상 있으면, 빈 이름을 지정한다.")
     public void findBeanByParentTypeBeanName() {
         DiscountPolicy bean = ac.getBean("rateDiscountPolicy", DiscountPolicy.class);
-        assertThat(bean).isInstanceOf(RateDiscountPolicy.class);
+        Assertions.assertThat(bean).isInstanceOf(RateDiscountPolicy.class);
+
     }
 
     @Test
     @DisplayName("특정 하위 타입으로 조회")
     public void findBeanBySubType() {
         DiscountPolicy bean = ac.getBean(RateDiscountPolicy.class);
-        assertThat(bean).isInstanceOf(RateDiscountPolicy.class);
+        Assertions.assertThat(bean).isInstanceOf(RateDiscountPolicy.class);
     }
 
     @Test
     @DisplayName("부모 타입으로 모두 조회")
     public void findBeanByParentType() {
         Map<String, DiscountPolicy> beansOfType = ac.getBeansOfType(DiscountPolicy.class);
-        assertThat(beansOfType.size()).isEqualTo(2);
+        Assertions.assertThat(beansOfType.size()).isEqualTo(2);
         for (String key : beansOfType.keySet()) {
             System.out.println("key = " + key + " value = " + beansOfType.get(key));
         }
