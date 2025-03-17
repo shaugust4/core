@@ -4,7 +4,6 @@ import hello.core.AppConfig;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
 import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.springframework.beans.factory.NoUniqueBeanDefinitionException;
 import org.springframework.context.ApplicationContext;

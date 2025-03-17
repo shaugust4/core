@@ -1,41 +1,49 @@
 package hello.core.lifecycle;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.annotation.PreDestroy;
-import lombok.Setter;
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
-@Setter
-public class NetworkClient {
+public class NetworkClient{
     private String url;
 
     public NetworkClient() {
         System.out.println("생성자 호출, url = " + url);
     }
 
-    // 서비스 시작
-    public void connect() {
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public NetworkClient(String url) {
+        this.url = url;
+    }
+
+    //서비스 시작 시 호출
+    public void connect(){
         System.out.println("connect: " + url);
     }
 
-    public void call(String message) {
-        System.out.println("call: " + url + " message = " + message);
+    public void call(String message){
+        System.out.println("call: " + url + ", message: " + message);
+
     }
 
-    // 서비스 종료
+    //서비스 종료 시 호출
     public void disconnect() {
-        System.out.println("close: " + url);
+        System.out.println("close " + url);
     }
 
     @PostConstruct
-    public void init() throws Exception {
+    public void init()  {
         System.out.println("NetworkClient.init");
         connect();
-        call("초기화 연결 메시지");
+        call("초기화 메시지");
     }
 
     @PreDestroy
-    public void close() throws Exception {
+    public void close() {
         System.out.println("NetworkClient.close");
         disconnect();
     }
+
 }

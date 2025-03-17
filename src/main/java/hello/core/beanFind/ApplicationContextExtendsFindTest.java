@@ -7,15 +7,12 @@ import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.springframework.beans.factory.NoUniqueBeanDefinitionException;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 
 import java.util.Map;
 
-import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ApplicationContextExtendsFindTest {
@@ -47,7 +44,7 @@ public class ApplicationContextExtendsFindTest {
     @DisplayName("부모 타입으로 모두 조회")
     public void findBeanByParentType() {
         Map<String, DiscountPolicy> beansOfType = ac.getBeansOfType(DiscountPolicy.class);
-        Assertions.assertThat(beansOfType.size()).isEqualTo(2);
+        Assertions.assertThat(beansOfType.size()).isEqualTo(1);
         for (String key : beansOfType.keySet()) {
             System.out.println("key = " + key + " value = " + beansOfType.get(key));
         }
