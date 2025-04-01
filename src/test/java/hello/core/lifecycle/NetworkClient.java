@@ -1,17 +1,16 @@
 package hello.core.lifecycle;
 
+import lombok.Setter;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
+@Setter
 public class NetworkClient{
     private String url;
 
     public NetworkClient() {
         System.out.println("생성자 호출, url = " + url);
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
     }
 
     public NetworkClient(String url) {
